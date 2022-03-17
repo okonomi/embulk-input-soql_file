@@ -27,16 +27,20 @@ in:
   security_token: ***
   client_id: ***
   client_secret: ***
-  instance_url: https://sample.force.com
+  auth_end_point: https://sample.salesforce.com/services/Soap/u/
   api_version: 41.0
-  soql: SELECT Id, Name, LastModifiedDate FROM Account WHERE LastModifiedDate > :last_date ORDER BY Id
+  soql: SELECT Id, Name, LastModifiedDate FROM Account WHERE LastModifiedDate > 2019-08-19T00:41:38Z ORDER BY Id
+  object: Account
   include_deleted_or_archived_records: true
-  conditions:
-    - {key: last_date, value: '2019-08-19T00:41:38Z' }
-  columns:
-    - {name: Id, type: string, index: 0}
-    - {name: Name, type: string, index: 1}
-    - {name: LastModifiedDate, type: timestamp, format: '%Y-%m-%dT%H:%M:%S.%L%z', index: 2}
+  parser:
+    charset: UTF-8
+    newline: CRLF
+    type: csv
+    delimiter: ','
+    columns:
+      - {name: Id, type: string, index: 0}
+      - {name: Name, type: string, index: 1}
+      - {name: LastModifiedDate, type: timestamp, format: '%Y-%m-%dT%H:%M:%S.%L%z', index: 2}
 ```
 
 
